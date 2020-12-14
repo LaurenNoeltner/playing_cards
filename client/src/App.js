@@ -2,6 +2,8 @@ import Start from "./components/Start";
 import CardTable from "./components/CardTable";
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+
 
 function App() {
   return (
