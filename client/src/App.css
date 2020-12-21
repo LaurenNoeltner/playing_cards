@@ -18,6 +18,11 @@
   text-align: center;
 }
 
+.cardBackImage {
+  max-width: 22%;
+  border-radius: 10px;
+}
+
 .userDrawnCard {
   text-align: center;
 }
@@ -26,8 +31,6 @@
   margin-right: auto;
   margin-left: auto;
   display: block;
-
-
 }
 .App-header {
   background-color: #147745;
