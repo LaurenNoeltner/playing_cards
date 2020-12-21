@@ -1,10 +1,26 @@
 .opponentCard {
 text-align: center;
 }
+.opponentDeck {
+  text-align: center;
+}
 
+.userDeck {
+  text-align: center;
+}
 
+.opponentDrawnCard {
+  text-align: center;
 
+}
 
+.somethingBlock {
+  text-align: center;
+}
+
+.userDrawnCard {
+  text-align: center;
+}
 .App-header {
   background-color: #147745;
   min-height: 100vh;

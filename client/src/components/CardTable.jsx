@@ -21,10 +21,13 @@ const CardTable = () => {
     return (
         <div>
             <Header />
-            <button className="startBtn" onClick={getDeck}>Start Game</button>
+            <div className="row">
+                <button className="startBtn" onClick={getDeck}>Start Game</button>
+            </div>
+            
 
-            <div className="row opponentRow">
-                <div className="col-12">
+            <div className="row">
+                <div className="col-12 opponentDeck">
                     Opponent Deck
                 </div>
             </div>
@@ -41,7 +44,7 @@ const CardTable = () => {
             </div>
             <div className="row userRow">
                 
-                <div className="col-6 userDeck">
+                <div className="col-12 userDeck">
                     User Deck
                 </div>
 
