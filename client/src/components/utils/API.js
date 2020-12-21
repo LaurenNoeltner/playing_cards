@@ -3,10 +3,11 @@ import axios from "axios";
 const URL = "https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1";
 
 export default {
-  // Gets all tasks
+  // GETS new deck that is pre-shuffled
   getShuffledDeck: function () {
     return axios.get(URL);
   },
+  // GETS 
   
   // Gets the tasks with the given id
 //   getTaskById: function (id) {

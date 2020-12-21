@@ -1,25 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from "./Header";
 import API from "./utils/API";
 import "../App.css";
 
 const CardTable = () => {
-    // const [] = useState({});
-    const testAPI = (e) => {
+    // const [deckID, setDeckID] = useState("");
+    const getDeck = (e) => {
         e.preventDefault();
         API.getShuffledDeck().then((res) => {
             console.log(res.data);
-        })
+            console.log(res.data.deck_id);
+            const currentDeck = res.data.deck_id;
+            console.log(currentDeck);
+        });
+        
+        
+        
     }
 
     return (
         <div>
             <Header />
+            <button className="startBtn" onClick={getDeck}>Start Game</button>
+
             <div className="row opponentRow">
                 <div className="col-12">
                     Opponent Deck
                 </div>
-                <button className="apiTest" onClick={testAPI}>Test Me</button>
             </div>
             <div className="row middleRow">
                 <div className="col-4 opponentDrawnCard">
