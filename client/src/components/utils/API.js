@@ -1,11 +1,14 @@
-// import axios from "axios";
+import axios from "axios";
 
-// export default {
-//   // Gets all tasks
-//   getTasks: function () {
-//     return axios.get("/api/tasks");
-//   },
-//   // Gets the tasks with the given id
+const URL = "https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1";
+
+export default {
+  // Gets all tasks
+  getShuffledDeck: function () {
+    return axios.get(URL);
+  },
+  
+  // Gets the tasks with the given id
 //   getTaskById: function (id) {
 //     return axios.get("/api/tasks/" + id);
 //   },
@@ -17,16 +20,18 @@
 //   saveTask: function (taskData) {
 //     return axios.post("/api/tasks", taskData);
 //   },
-
-//   // points API calls
-//   getPoints: function () {
-//     return axios.get("/api/points/5faf3d071e12384bf094c8ce");
-//   },
-//   // Saves to the database
-//   savePoints: function (pointData) {
-//     return axios.post("/api/points/", pointData);
-//   },
 //   putPoints: function (id, pointData) {
 //     return axios.put("/api/points/:id", pointData);
 //   },
-// };
+};
+
+// get deck
+// shuffle deck
+
+// deal 2 equal piles each consisting of half of deck
+// draw top card from each pile
+// determine winner of hand
+// winner of hand gets both cards added to the BOTTOM of their pile
+// when one of the player's pile has 0 cards, they lose
+// reshuffle deck
+// re-deal cards

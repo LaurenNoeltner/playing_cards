@@ -4,6 +4,14 @@ import API from "./utils/API";
 import "../App.css";
 
 const CardTable = () => {
+    // const [] = useState({});
+    const testAPI = (e) => {
+        e.preventDefault();
+        API.getShuffledDeck().then((res) => {
+            console.log(res.data);
+        })
+    }
+
     return (
         <div>
             <Header />
@@ -11,6 +19,7 @@ const CardTable = () => {
                 <div className="col-12">
                     Opponent Deck
                 </div>
+                <button className="apiTest" onClick={testAPI}>Test Me</button>
             </div>
             <div className="row middleRow">
                 <div className="col-4 opponentDrawnCard">
