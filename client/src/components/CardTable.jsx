@@ -4,30 +4,37 @@ import API from "./utils/API";
 import "../App.css";
 
 const CardTable = () => {
-    // const [deckID, setDeckID] = useState("");
+    const [deckID, setDeckID] = useState("");
+
     const getDeck = (e) => {
         e.preventDefault();
         API.getShuffledDeck().then((res) => {
             console.log(res.data);
             console.log(res.data.deck_id);
-            const currentDeck = res.data.deck_id;
-            console.log(currentDeck);
+        }); 
+    }
+    const dealHand = (e) => {
+        e.preventDefault();
+        API.getComputerHand().then((res) => {
+            console.log(res.data);
         });
-        
-        
-        
+        API.getUserHand().then((res) => {
+            console.log(res.data);
+        });
     }
 
     return (
         <div>
             <Header />
             <div className="row">
-                <button className="startBtn" onClick={getDeck}>Start Game</button>
+                <div className="col-12">
+                    <button className="startBtn" onClick={getDeck}>Start Game</button>
+                </div>
             </div>
             
 
             <div className="row">
-                <div className="col-12 opponentDeck">
+                <div className="col-12 opponentDeck" onClick={dealHand}>
                     Opponent Deck
                 </div>
             </div>

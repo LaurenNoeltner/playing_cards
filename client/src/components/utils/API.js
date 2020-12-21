@@ -1,13 +1,22 @@
 import axios from "axios";
 
-const URL = "https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1";
+const URL = "https://deckofcardsapi.com/api/deck/xp50c80sluua/shuffle/";
+
+const dealURL = "https://deckofcardsapi.com/api/deck/xp50c80sluua/draw/?count=26";
+
 
 export default {
   // GETS new deck that is pre-shuffled
   getShuffledDeck: function () {
     return axios.get(URL);
   },
-  // GETS 
+  // Put: Draws cards first time into piles
+  getComputerHand: function () {
+      return axios.get(dealURL);
+  },
+  getUserHand: function () {
+      return axios.get(dealURL);
+  }
   
   // Gets the tasks with the given id
 //   getTaskById: function (id) {

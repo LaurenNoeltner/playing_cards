@@ -1,5 +1,5 @@
 .opponentCard {
-text-align: center;
+  text-align: center;
 }
 .opponentDeck {
   text-align: center;
@@ -20,6 +20,14 @@ text-align: center;
 
 .userDrawnCard {
   text-align: center;
+}
+
+.startBtn {
+  margin-right: auto;
+  margin-left: auto;
+  display: block;
+
+
 }
 .App-header {
   background-color: #147745;
