@@ -32,6 +32,12 @@
   margin-left: auto;
   display: block;
 }
+.takeHandBtn {
+  margin-right: auto;
+  margin-left: auto;
+  display: block;
+}
+
 .App-header {
   background-color: #147745;
   min-height: 100vh;

@@ -1,23 +1,29 @@
 import axios from "axios";
 
-const URL = "https://deckofcardsapi.com/api/deck/xp50c80sluua/shuffle/";
+const MAINURL = "https://deckofcardsapi.com/api/deck/xp50c80sluua/shuffle/";
 
 const dealURL = "https://deckofcardsapi.com/api/deck/xp50c80sluua/draw/?count=26";
-// const dealURLUser = "https://deckofcardsapi.com/api/deck/xp50c80sluua/pile/userCards/add/?count=26";
-// const dealURLComputer = "https://deckofcardsapi.com/api/deck/xp50c80sluua/pile/computerCards/add/?count=26";
+
+const userHandURL = "https://deckofcardsapi.com/api/deck/xp50c80sluua/pile/userCards/add/?cards=AS,2S"
+const computerHandURL = "https://deckofcardsapi.com/api/deck/xp50c80sluua/pile/computerCards/add/?cards=AS,2S"
 
 export default {
-  // GETS new deck that is pre-shuffled
-  getShuffledDeck: function () {
-    return axios.get(URL);
+  // makes new shuffled deck
+  makeDeck: function () {
+    return axios.get(MAINURL);
   },
-  // Put: Draws cards first time into piles
+  
+  // draws cards first time 
   getComputerHand: function () {
-      return axios.get(dealURL);
+      return axios.get(computerHandURL);
   },
   getUserHand: function () {
-      return axios.get(dealURL);
+      return axios.get(userHandURL);
   },
+  // play single card
+  getShownCards: function () {
+      return axios.get()
+  }
 
   
   // Gets the tasks with the given id                
