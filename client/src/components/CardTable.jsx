@@ -1,35 +1,47 @@
 import React, { useState } from 'react';
 import Header from "./Header";
-import API from "./utils/API";
+// import API from "./utils/CardDeck";
 import "../App.css";
-import cardBack from "./utils/cardBack.jpg";
+import cardBack from "./card_images/cardBack.jpg";
 
 const CardTable = () => {
     const [shuffledDeck, setShuffledDeck] = useState([]);
+    const [deck, setUpDeck] = useState([]);
     const [userCards, setUserCards] = useState([]);
     const [computerCards, setComputerCards] = useState([]);
 
     const getDeck = (e) => {
         e.preventDefault();
-        API.makeDeck().then((res) => {
-            console.log(res.data);
-            setShuffledDeck(res.data.cards);
-        }); 
 
+        fetch("./data.json").then(response => {
+            console.log(response);
+            return response.json();
+        }).then(data => {
+            // setUserCards(data[0])
+            console.log(data[0].image);
+        }).catch(err => {
+            console.log(err + "couldn't get deck")
+        });
+
+        // API.makeDeck().then((res) => {
+        //     console.log(res.data);
+        //     setShuffledDeck(res.data.cards);
+        // }); 
+  
     };
 
-    const drawHands = (e) => {
-        e.preventDefault();
-        API.getComputerHand().then((res) => {
-            setComputerCards(res.data.cards);
-            console.log(res.data);
+    // const drawHands = (e) => {
+    //     e.preventDefault();
+    //     // API.getComputerHand().then((res) => {
+    //     //     setComputerCards(res.data);
+    //     //     console.log(res.data);
 
-        });
-        API.getUserHand().then((res) => {
-            setUserCards(res.data.cards);
-            console.log(res.data);
-        });
-    }
+    //     // });
+    //     API.getUserHand().then((res) => {
+    //         setUserCards(res.data.cards);
+    //         console.log(res.data);
+    //     });
+    // }
 
     // const playCard = (e) => {
     //     e.preventDefault();
@@ -44,7 +56,7 @@ const CardTable = () => {
             <div className="row">
                 <div className="col-12">
                     <button className="startBtn" onClick={getDeck}>Start Game</button>
-                    <button className="takeHandBtn" onClick={drawHands}>Get Hand</button>
+                    {/* <button className="takeHandBtn" onClick={drawHands}>Get Hand</button> */}
 
                 </div>
             </div>

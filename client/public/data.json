@@ -1,0 +1,14 @@
+[
+    {
+      "id": "0",
+      "card": "AH",
+      "value": 1,
+      "image": "./card_images/ace_of_hearts.png"
+    },
+    {
+      "id": "1",
+      "card": "2H",
+      "value": 2,
+      "image": "./card_images/2_of_hearts.png"
+    }
+  ]
