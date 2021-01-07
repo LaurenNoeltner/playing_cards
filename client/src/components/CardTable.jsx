@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import Header from "./Header";
 // import API from "./utils/CardDeck";
 import "../App.css";
-import cardBack from "./card_images/cardBack.jpg";
+import cardBack from "./utils/cardBack.jpg";
 
 const CardTable = () => {
     const [shuffledDeck, setShuffledDeck] = useState([]);
     const [deck, setUpDeck] = useState([]);
     const [userCards, setUserCards] = useState([]);
     const [computerCards, setComputerCards] = useState([]);
+    const [userCardImg, setUserCardImg] = useState("");
 
     const getDeck = (e) => {
         e.preventDefault();
@@ -17,7 +18,7 @@ const CardTable = () => {
             console.log(response);
             return response.json();
         }).then(data => {
-            // setUserCards(data[0])
+            setUserCardImg(data[0].image)
             console.log(data[0].image);
         }).catch(err => {
             console.log(err + "couldn't get deck")
@@ -64,7 +65,7 @@ const CardTable = () => {
 
             <div className="row">
                 <div className="col-12 opponentDeck">
-                    <img className="cardBackImage" src={cardBack} />
+                    <img className="cardBackImage" src={userCardImg} />
                 </div>
             </div>
             <div className="row middleRow">
