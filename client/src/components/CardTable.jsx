@@ -53,8 +53,6 @@ const CardTable = () => {
             deck[randomIndex] = tempValue;
         }
         return deck;
-        setShuffledDeck(deck);
-        console.log(shuffledDeck);
     };
 
     const dealWar = () => {
@@ -69,32 +67,13 @@ const CardTable = () => {
         console.log(computerCards);
     };
 
+    //Initiates game
     const startGameWar = (e) => {
         getDeck(e);
         dealWar();
-    }
+    };
 
 
-
-
-
-    // const drawHands = (e) => {
-    //     e.preventDefault();
-    //     // API.getComputerHand().then((res) => {
-    //     //     setComputerCards(res.data);
-    //     //     console.log(res.data);
-
-    //     // });
-    //     API.getUserHand().then((res) => {
-    //         setUserCards(res.data.cards);
-    //         console.log(res.data);
-    //     });
-    // }
-
-    // const playCard = (e) => {
-    //     e.preventDefault();
-    //     API.
-    // }
 
 
 
@@ -110,30 +89,24 @@ const CardTable = () => {
             </div>
             
 
-            <div className="row">
-                <div className="col-12 opponentDeck">
+            <div className="row opponentRow">
+                <div className="col-6 opponentDeck">
                     <img className="cardImage" src={cardBack} />
                 </div>
-            </div>
-            <div className="row middleRow">
-                <div className="col-4 opponentDrawnCard">
+                <div className="col-6 opponentDrawnCard">
                     <img src="#" alt="computer_drawn_card" />
                 </div>
-                <div className="col-4 somethingBlock">
-                    {/* Misc. Middle Area*/}
-                    
-                        {/* <button className="drawBtn" onClick={}>Draw! </button> */}
-                </div>
-                <div className="col-4 userDrawnCard">
-                    {/* <img src={userCards[0].image} alt="user_drawn_card" /> */}
-                    <img className="cardImage" src={userCardImg} />                    
-
-                </div>
             </div>
+            
             <div className="row userRow">
                 
-                <div className="col-12 userDeck">
-                <img className="cardImage" src={cardBack} />
+                <div className="col-6 userDeck">
+                    <img className="cardImage" src={cardBack} />
+
+                </div>
+                <div className="col-6 userDrawnCard">
+                    {/* <img src={userCards[0].image} alt="user_drawn_card" /> */}
+                    <img className="cardImage" src={userCardImg} />                    
 
                 </div>
 
