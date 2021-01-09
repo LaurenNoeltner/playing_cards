@@ -11,6 +11,35 @@ const CardTable = () => {
     const [computerCards, setComputerCards] = useState([]);
     const [userCardImg, setUserCardImg] = useState("");
 
+    
+
+
+    
+    //establish connection to my JSON file in /public folder
+    const getDeck = (e) => {
+        e.preventDefault();
+
+        fetch("./data.json").then(response => {
+            console.log(response);
+            return response.json();
+        }).then(data => {
+            setDeck(data);
+            setUserCardImg(data[0].image)
+            // console.log(data);
+            
+        }).catch(err => {
+            console.log(err + "couldn't get deck")
+        });
+        shuffleDeck(deck);
+        setShuffledDeck(deck);
+        console.log(shuffledDeck);
+        // dealWar();
+        // API.makeDeck().then((res) => {
+        //     console.log(res.data);
+        //     setShuffledDeck(res.data.cards);
+        // }); 
+    };
+
     const shuffleDeck = (deck) => {
         
         let currentIndex = deck.length, tempValue, randomIndex;
@@ -24,41 +53,14 @@ const CardTable = () => {
             deck[randomIndex] = tempValue;
         }
         return deck;
-        
-    };
-
-
-    
-    
-    const getDeck = (e) => {
-        e.preventDefault();
-
-        fetch("./data.json").then(response => {
-            console.log(response);
-            return response.json();
-        }).then(data => {
-            setDeck(data);
-            setUserCardImg(data[0].image)
-            // console.log(data);
-        }).catch(err => {
-            console.log(err + "couldn't get deck")
-        });
-        // console.log(deck);
-        shuffleDeck(deck);
         setShuffledDeck(deck);
         console.log(shuffledDeck);
-        dealWar();
-        // API.makeDeck().then((res) => {
-        //     console.log(res.data);
-        //     setShuffledDeck(res.data.cards);
-        // }); 
     };
 
-    
     const dealWar = () => {
         //just setting the halfway point of the deck
         let halfwayThruDeck = Math.floor(shuffledDeck.length / 2);
-
+        //doing the real job
         let firstHalfDeck = shuffledDeck.slice(0, halfwayThruDeck);
         let secondHalfDeck = shuffledDeck.slice(halfwayThruDeck, shuffledDeck.length);
         setUserCards(firstHalfDeck);
@@ -66,6 +68,13 @@ const CardTable = () => {
         setComputerCards(secondHalfDeck);
         console.log(computerCards);
     };
+
+    const startGameWar = (e) => {
+        getDeck(e);
+        dealWar();
+    }
+
+
 
 
 
@@ -94,7 +103,7 @@ const CardTable = () => {
             <Header />
             <div className="row">
                 <div className="col-12">
-                    <button className="startBtn" onClick={getDeck}>Start Game</button>
+                    <button className="startBtn" onClick={startGameWar}>Start Game</button>
                     {/* <button className="takeHandBtn" onClick={drawHands}>Get Hand</button> */}
 
                 </div>

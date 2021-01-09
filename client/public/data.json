@@ -10,5 +10,29 @@
       "card": "2H",
       "value": 2,
       "image": "./card_images/2_of_hearts.png"
+    },
+    {
+      "id": "2",
+      "card": "3H",
+      "value": 3,
+      "image": "./card_images/3_of_hearts.png"
+    },
+    {
+      "id": "3",
+      "card": "4H",
+      "value": 4,
+      "image": "./card_images/4_of_hearts.png"
+    },
+    {
+      "id": "4",
+      "card": "5H",
+      "value": 5,
+      "image": "./card_images/5_of_hearts.png"
+    },
+    {
+      "id": "5",
+      "card": "6H",
+      "value": 6,
+      "image": "./card_images/6_of_hearts.png"
     }
   ]
