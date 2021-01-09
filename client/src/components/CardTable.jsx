@@ -26,6 +26,9 @@ const CardTable = () => {
         return deck;
         
     };
+
+
+    
     
     const getDeck = (e) => {
         e.preventDefault();
@@ -36,14 +39,15 @@ const CardTable = () => {
         }).then(data => {
             setDeck(data);
             setUserCardImg(data[0].image)
-            console.log(data);
+            // console.log(data);
         }).catch(err => {
             console.log(err + "couldn't get deck")
         });
-        console.log(deck);
+        // console.log(deck);
         shuffleDeck(deck);
         setShuffledDeck(deck);
         console.log(shuffledDeck);
+        dealWar();
         // API.makeDeck().then((res) => {
         //     console.log(res.data);
         //     setShuffledDeck(res.data.cards);
@@ -51,7 +55,18 @@ const CardTable = () => {
     };
 
     
-    
+    const dealWar = () => {
+        //just setting the halfway point of the deck
+        let halfwayThruDeck = Math.floor(shuffledDeck.length / 2);
+
+        let firstHalfDeck = shuffledDeck.slice(0, halfwayThruDeck);
+        let secondHalfDeck = shuffledDeck.slice(halfwayThruDeck, shuffledDeck.length);
+        setUserCards(firstHalfDeck);
+        console.log(userCards);
+        setComputerCards(secondHalfDeck);
+        console.log(computerCards);
+    };
+
 
 
     // const drawHands = (e) => {
