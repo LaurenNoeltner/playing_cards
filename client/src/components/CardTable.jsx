@@ -6,11 +6,27 @@ import cardBack from "./utils/cardBack.jpg";
 
 const CardTable = () => {
     const [shuffledDeck, setShuffledDeck] = useState([]);
-    const [deck, setUpDeck] = useState([]);
+    const [deck, setDeck] = useState([]);
     const [userCards, setUserCards] = useState([]);
     const [computerCards, setComputerCards] = useState([]);
     const [userCardImg, setUserCardImg] = useState("");
 
+    const shuffleDeck = (deck) => {
+        
+        let currentIndex = deck.length, tempValue, randomIndex;
+
+        while (0 !== currentIndex) {
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+
+            tempValue = deck[currentIndex];
+            deck[currentIndex] = deck[randomIndex];
+            deck[randomIndex] = tempValue;
+        }
+        return deck;
+        
+    };
+    
     const getDeck = (e) => {
         e.preventDefault();
 
@@ -18,18 +34,25 @@ const CardTable = () => {
             console.log(response);
             return response.json();
         }).then(data => {
+            setDeck(data);
             setUserCardImg(data[0].image)
-            console.log(data[0].image);
+            console.log(data);
         }).catch(err => {
             console.log(err + "couldn't get deck")
         });
-
+        console.log(deck);
+        shuffleDeck(deck);
+        setShuffledDeck(deck);
+        console.log(shuffledDeck);
         // API.makeDeck().then((res) => {
         //     console.log(res.data);
         //     setShuffledDeck(res.data.cards);
         // }); 
-  
     };
+
+    
+    
+
 
     // const drawHands = (e) => {
     //     e.preventDefault();
@@ -65,7 +88,7 @@ const CardTable = () => {
 
             <div className="row">
                 <div className="col-12 opponentDeck">
-                    <img className="cardBackImage" src={userCardImg} />
+                    <img className="cardImage" src={cardBack} />
                 </div>
             </div>
             <div className="row middleRow">
@@ -79,14 +102,14 @@ const CardTable = () => {
                 </div>
                 <div className="col-4 userDrawnCard">
                     {/* <img src={userCards[0].image} alt="user_drawn_card" /> */}
-                    user card                    
+                    <img className="cardImage" src={userCardImg} />                    
 
                 </div>
             </div>
             <div className="row userRow">
                 
                 <div className="col-12 userDeck">
-                <img className="cardBackImage" src={cardBack} />
+                <img className="cardImage" src={cardBack} />
 
                 </div>
 
