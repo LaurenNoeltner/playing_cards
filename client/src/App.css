@@ -20,6 +20,7 @@
 
 .cardImage {
   max-width: 15%;
+  min-height: 50px; /*doesnt work*/
   border-radius: 10px;
 }
 

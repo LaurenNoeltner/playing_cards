@@ -11,9 +11,9 @@ const CardTable = () => {
     const [userCards, setUserCards] = useState([]);
     const [computerCards, setComputerCards] = useState([]);
     const [userCardImg, setUserCardImg] = useState("");
-    // const [computerCardImg, setComputerCardImg] = useState("");
-    // const [userPlayedCard, setUserPlayedCard] = useState({});
-    // const [computerPlayedCard, setComputerPlayedCard] = useState([]);
+    const [computerCardImg, setComputerCardImg] = useState("");
+    const [userPlayedCard, setUserPlayedCard] = useState({});
+    const [computerPlayedCard, setComputerPlayedCard] = useState([]);
 
     // useEffect(() => {
     //     handleNewDeck();
@@ -72,11 +72,6 @@ const CardTable = () => {
         // console.log(shuffledDeck, "shuffledDeck");
     };
 
-
-    
-   
-
-    
     //split deck in 2 and assign each player their cards
     const dealWar = (e) => {
         e.preventDefault();
@@ -93,13 +88,15 @@ const CardTable = () => {
 
     const showFirstCardImg = () => {
         setUserCardImg(userCards[0].image);
+        setComputerCardImg(computerCards[0].image);
     };
-    // const flipCard = () => {
-    //     setUserPlayedCard(userCards[0]);
-    //     console.log(userCards[0]);
-    //     setComputerPlayedCard(computerCards[0]);
-    //     console.log(computerPlayedCard);
-    // }
+    const flipCard = () => {
+        setUserPlayedCard(userCards[0]);
+        console.log(userCards[0]);
+        setComputerPlayedCard(computerCards[0]);
+        console.log(computerCards[0]);
+        showFirstCardImg();
+    }
 
 
 
@@ -125,7 +122,7 @@ const CardTable = () => {
                     <img alt="card_piles" className="cardImage" src={cardBack} />
                 </div>
                 <div className="col-6 opponentDrawnCard">
-                    <img className="cardImage" alt="computer_drawn_card" src="#" />
+                    <img className="cardImage" alt="computer_drawn_card" src={computerCardImg} />
                 </div>
             </div>
             
@@ -133,7 +130,7 @@ const CardTable = () => {
                 
                 <div className="col-6 userDeck">
                     
-                    <img alt="card_piles" className="cardImage" src={cardBack} onClick={showFirstCardImg} />
+                    <img alt="card_piles" className="cardImage" src={cardBack} onClick={flipCard} />
                     <p className="userInfo"> Cards in my hand: {userCards.length}</p>
                 </div>
                 <div className="col-6 userDrawnCard">
