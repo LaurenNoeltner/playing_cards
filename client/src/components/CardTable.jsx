@@ -12,8 +12,10 @@ const CardTable = () => {
     const [computerCards, setComputerCards] = useState([]);
     const [userCardImg, setUserCardImg] = useState("");
     const [computerCardImg, setComputerCardImg] = useState("");
-    const [userPlayedCard, setUserPlayedCard] = useState({});
+    const [userPlayedCard, setUserPlayedCard] = useState([]);
     const [computerPlayedCard, setComputerPlayedCard] = useState([]);
+    const [userPlayedValue, setUserPlayedValue] = useState(Number);
+    const [computerPlayedValue, setComputerPlayedValue] = useState(Number);
 
     // useEffect(() => {
     //     handleNewDeck();
@@ -90,11 +92,17 @@ const CardTable = () => {
         setUserCardImg(userCards[0].image);
         setComputerCardImg(computerCards[0].image);
     };
+    // const handleComparison = () => {
+
+    // };
+
     const flipCard = () => {
         setUserPlayedCard(userCards[0]);
         console.log(userCards[0]);
         setComputerPlayedCard(computerCards[0]);
         console.log(computerCards[0]);
+        setComputerPlayedValue(computerCards[0].value);
+        setUserPlayedValue(userCards[0].value);
         showFirstCardImg();
     }
 
@@ -122,6 +130,7 @@ const CardTable = () => {
                     <img alt="card_piles" className="cardImage" src={cardBack} />
                 </div>
                 <div className="col-6 opponentDrawnCard">
+                    <p className="drawnComputerCard">Value: {computerPlayedValue}</p>
                     <img className="cardImage" alt="computer_drawn_card" src={computerCardImg} />
                 </div>
             </div>
@@ -136,7 +145,7 @@ const CardTable = () => {
                 <div className="col-6 userDrawnCard">
                     {/* <img src={userCards[0].image} alt="user_drawn_card" /> */}
                     <img className="cardImage" alt="user_drawn_card" src={userCardImg} />                    
-
+                    <p className="drawnUserCard">Value: {userPlayedValue}</p>
                 </div>
 
             </div>
