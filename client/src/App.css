@@ -19,7 +19,7 @@
 }
 
 .cardImage {
-  max-width: 15%;
+  max-width: 20%;
   min-height: 50px; /*doesnt work*/
   border-radius: 10px;
 }
@@ -38,7 +38,9 @@
   margin-left: auto;
   display: block;
 }
-
+#resultText {
+  text-align: center;
+}
 .App-header {
   background-color: #147745;
   min-height: 100vh;

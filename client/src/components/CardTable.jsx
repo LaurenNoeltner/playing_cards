@@ -16,6 +16,7 @@ const CardTable = () => {
     const [computerPlayedCard, setComputerPlayedCard] = useState([]);
     const [userPlayedValue, setUserPlayedValue] = useState(Number);
     const [computerPlayedValue, setComputerPlayedValue] = useState(Number);
+    const [resultText, setResultText] = useState("");
 
     // useEffect(() => {
     //     handleNewDeck();
@@ -92,9 +93,15 @@ const CardTable = () => {
         setUserCardImg(userCards[0].image);
         setComputerCardImg(computerCards[0].image);
     };
-    // const handleComparison = () => {
-
-    // };
+    const handleComparison = () => {
+        if (userPlayedValue > computerPlayedValue) {
+            setResultText("You Win!");
+        } else if (userPlayedValue < computerPlayedValue) {
+            setResultText("You Lose!");
+        } else {
+            setResultText("Draw!");
+        };
+    };
 
     const flipCard = () => {
         setUserPlayedCard(userCards[0]);
@@ -104,6 +111,7 @@ const CardTable = () => {
         setComputerPlayedValue(computerCards[0].value);
         setUserPlayedValue(userCards[0].value);
         showFirstCardImg();
+        handleComparison();
     }
 
 
@@ -132,6 +140,11 @@ const CardTable = () => {
                 <div className="col-6 opponentDrawnCard">
                     <p className="drawnComputerCard">Value: {computerPlayedValue}</p>
                     <img className="cardImage" alt="computer_drawn_card" src={computerCardImg} />
+                </div>
+            </div>
+            <div className="row">
+                <div className="col-md-12">
+                    <p id="resultText">{resultText}</p>
                 </div>
             </div>
             
