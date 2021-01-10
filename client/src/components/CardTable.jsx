@@ -10,7 +10,7 @@ const CardTable = () => {
     
     const [userCards, setUserCards] = useState([]);
     const [computerCards, setComputerCards] = useState([]);
-    // const [userCardImg, setUserCardImg] = useState("");
+    const [userCardImg, setUserCardImg] = useState("");
     // const [computerCardImg, setComputerCardImg] = useState("");
     // const [userPlayedCard, setUserPlayedCard] = useState({});
     // const [computerPlayedCard, setComputerPlayedCard] = useState([]);
@@ -91,6 +91,9 @@ const CardTable = () => {
         // console.log(computerCards, "computerCards");
     };
 
+    const showFirstCardImg = () => {
+        setUserCardImg(userCards[0].image);
+    };
     // const flipCard = () => {
     //     setUserPlayedCard(userCards[0]);
     //     console.log(userCards[0]);
@@ -130,12 +133,12 @@ const CardTable = () => {
                 
                 <div className="col-6 userDeck">
                     
-                    <img alt="card_piles" className="cardImage" src={cardBack} />
+                    <img alt="card_piles" className="cardImage" src={cardBack} onClick={showFirstCardImg} />
                     <p className="userInfo"> Cards in my hand: {userCards.length}</p>
                 </div>
                 <div className="col-6 userDrawnCard">
                     {/* <img src={userCards[0].image} alt="user_drawn_card" /> */}
-                    <img className="cardImage" alt="user_drawn_card" src="#" />                    
+                    <img className="cardImage" alt="user_drawn_card" src={userCardImg} />                    
 
                 </div>
 
