@@ -16,30 +16,37 @@ const CardTable = () => {
     // const [computerPlayedCard, setComputerPlayedCard] = useState([]);
 
     // useEffect(() => {
-    //     getDeck();
+    //     handleNewDeck();
+    //     shuffleDeck();
+    //     dealWar();
     // }, []);
 
 
     //establish connection to my JSON file in /public folder
     const getDeck = () => {
-
+        
         fetch("./data.json").then(response => {
             console.log(response);
             return response.json();
         }).then(data => {
             console.log(data, "first deck - unshuffled");
+            const newDeck = data;
             // localStorage.setItem(data, JSON.stringify(data));
             // setDeck(JSON.parse(localStorage.getItem(data)));
-            setDeck(data);
+            setDeck(newDeck);
             // console.log(deck, "deck log");
             
-        }).then(() => {
-            console.log(deck, "deck log");
         }).catch(err => {
             console.log(err, "couldn't get deck");
         });
     };
 
+    const handleNewDeck = (e) => {
+        e.preventDefault();
+        getDeck();
+        console.log(deck, "deck");
+    };
+    //shuffle function for any array of cards
     const randomize = (pile) => {
         
         let currentIndex = pile.length, tempValue, randomIndex;
@@ -56,11 +63,13 @@ const CardTable = () => {
         
     };
     
-
-    const shuffleDeck = () => {
-        randomize(deck);
-        setShuffledDeck(deck);
-        console.log(shuffledDeck);
+    //handles the whole shuffle
+    const shuffleDeck = (e) => {
+        e.preventDefault();
+        const randomDeck = randomize(deck);
+        setShuffledDeck(randomDeck);
+        console.log(randomDeck, "randomDeck");
+        // console.log(shuffledDeck, "shuffledDeck");
     };
 
 
@@ -68,17 +77,18 @@ const CardTable = () => {
    
 
     
-
-    const dealWar = () => {
+    //split deck in 2 and assign each player their cards
+    const dealWar = (e) => {
+        e.preventDefault();
         //setting the halfway point of the deck
         let halfwayThruDeck = Math.floor(shuffledDeck.length / 2);
         //doing the real job
         let firstHalfDeck = shuffledDeck.slice(0, halfwayThruDeck);
         let secondHalfDeck = shuffledDeck.slice(halfwayThruDeck, shuffledDeck.length);
         setUserCards(firstHalfDeck);
-        console.log(userCards);
+        // console.log(userCards, "userCards");
         setComputerCards(secondHalfDeck);
-        console.log(computerCards);
+        // console.log(computerCards, "computerCards");
     };
 
     // const flipCard = () => {
@@ -95,7 +105,7 @@ const CardTable = () => {
             <Header />
             <div className="row">
                 <div className="col-12">
-                    <button className="startBtn" onClick={getDeck}>Get Deck</button>
+                    <button className="startBtn" onClick={handleNewDeck}>Get Deck</button>
                     <button className="startBtn" onClick={shuffleDeck}>Shuffle</button>
                     <button className="startBtn" onClick={dealWar}>Deal Cards</button>
                     {/* <button className="startBtn" onClick={startGameWar}>Start Game</button>
@@ -108,6 +118,7 @@ const CardTable = () => {
 
             <div className="row opponentRow">
                 <div className="col-6 opponentDeck">
+                    <p className="computerInfo">Cards in their hand: {computerCards.length}</p>
                     <img alt="card_piles" className="cardImage" src={cardBack} />
                 </div>
                 <div className="col-6 opponentDrawnCard">
@@ -118,8 +129,9 @@ const CardTable = () => {
             <div className="row userRow">
                 
                 <div className="col-6 userDeck">
+                    
                     <img alt="card_piles" className="cardImage" src={cardBack} />
-
+                    <p className="userInfo"> Cards in my hand: {userCards.length}</p>
                 </div>
                 <div className="col-6 userDrawnCard">
                     {/* <img src={userCards[0].image} alt="user_drawn_card" /> */}
