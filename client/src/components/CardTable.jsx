@@ -95,17 +95,7 @@ const CardTable = () => {
         setUserCardImg(userCards[0].image);
         setComputerCardImg(computerCards[0].image);
     };
-    const handleComparison = () => {
-        if (userPlayedValue > computerPlayedValue) {
-            setResultText("You Win!");
-        } else if (userPlayedValue < computerPlayedValue) {
-            setResultText("You Lose!");
-        } else if (userPlayedValue === computerPlayedValue) {
-            setResultText("Draw!");
-        } else {
-            console.log("Something went wrong");
-        };
-    };
+    
 
     const flipCard = () => {
         setUserPlayedCard(userCards[0]);
@@ -121,7 +111,38 @@ const CardTable = () => {
         flipCard();
     };
 
+    const handleComparison = () => {
+        if (userPlayedValue > computerPlayedValue) {
+            setResultText("You Win!");
+            handleUserWin();
+        } else if (userPlayedValue < computerPlayedValue) {
+            setResultText("You Lose!");
+            handleComputerWin();
+        } else if (userPlayedValue === computerPlayedValue) {
+            setResultText("Draw!");
+        } else {
+            console.log("Something went wrong");
+        };
+    };
 
+    const handleUserWin = () => {
+        for (let i = 0; i < computerCards.length; i++) {
+            userCards.push(computerCards[i]);
+            computerCards.splice(i, 1);
+            
+        }
+    };
+    const handleComputerWin = () => {
+        for (let i = 0; i < userCards.length; i++) {
+            computerCards.push(userCards[i]);
+            userCards.splice(i, 1);
+           
+        }
+    }
+
+    const judgeAndRedistribute = () => {
+        handleComparison();
+    }
 
     return (
         <div>
@@ -131,7 +152,7 @@ const CardTable = () => {
                     <button className="startBtn" onClick={handleNewDeck}>Get Deck</button>
                     <button className="startBtn" onClick={shuffleDeck}>Shuffle</button>
                     <button className="startBtn" onClick={dealWar}>Deal Cards</button>
-                    <button className="startBtn" onClick={handleComparison}>Compare Cards</button>
+                    <button className="startBtn" onClick={judgeAndRedistribute}>Compare Cards</button>
                     {/* <button className="startBtn" onClick={startGameWar}>Start Game</button> */}
                     {/* <button className="takeHandBtn" onClick={drawHands}>Get Hand</button> */}
 
