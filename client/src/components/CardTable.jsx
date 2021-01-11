@@ -3,6 +3,7 @@ import Header from "./Header";
 // import API from "./utils/CardDeck";
 import "../App.css";
 import cardBack from "./utils/cardBack.jpg";
+import computerCard from './ComputerCard';
 
 const CardTable = () => {
     const [deck, setDeck] = useState([]);
@@ -47,7 +48,8 @@ const CardTable = () => {
     const handleNewDeck = (e) => {
         e.preventDefault();
         getDeck();
-        console.log(deck, "deck");
+        setComputerCardImg("");
+        setUserCardImg("");
     };
     //shuffle function for any array of cards
     const randomize = (pile) => {
@@ -84,9 +86,9 @@ const CardTable = () => {
         let firstHalfDeck = shuffledDeck.slice(0, halfwayThruDeck);
         let secondHalfDeck = shuffledDeck.slice(halfwayThruDeck, shuffledDeck.length);
         setUserCards(firstHalfDeck);
-        // console.log(userCards, "userCards");
+        console.log(firstHalfDeck, "userCards");
         setComputerCards(secondHalfDeck);
-        // console.log(computerCards, "computerCards");
+        console.log(secondHalfDeck, "computerCards");
     };
 
     const showFirstCardImg = () => {
@@ -98,8 +100,10 @@ const CardTable = () => {
             setResultText("You Win!");
         } else if (userPlayedValue < computerPlayedValue) {
             setResultText("You Lose!");
-        } else {
+        } else if (userPlayedValue === computerPlayedValue) {
             setResultText("Draw!");
+        } else {
+            console.log("Something went wrong");
         };
     };
 
@@ -111,8 +115,11 @@ const CardTable = () => {
         setComputerPlayedValue(computerCards[0].value);
         setUserPlayedValue(userCards[0].value);
         showFirstCardImg();
-        handleComparison();
-    }
+    };
+
+    const playCard = () => {
+        flipCard();
+    };
 
 
 
@@ -124,8 +131,8 @@ const CardTable = () => {
                     <button className="startBtn" onClick={handleNewDeck}>Get Deck</button>
                     <button className="startBtn" onClick={shuffleDeck}>Shuffle</button>
                     <button className="startBtn" onClick={dealWar}>Deal Cards</button>
-                    {/* <button className="startBtn" onClick={startGameWar}>Start Game</button>
-                    <button className="startBtn" onClick={startGameWar}>Start Game</button> */}
+                    <button className="startBtn" onClick={handleComparison}>Compare Cards</button>
+                    {/* <button className="startBtn" onClick={startGameWar}>Start Game</button> */}
                     {/* <button className="takeHandBtn" onClick={drawHands}>Get Hand</button> */}
 
                 </div>
@@ -152,7 +159,7 @@ const CardTable = () => {
                 
                 <div className="col-6 userDeck">
                     
-                    <img alt="card_piles" className="cardImage" src={cardBack} onClick={flipCard} />
+                    <img alt="card_piles" className="cardImage" src={cardBack} onClick={playCard} />
                     <p className="userInfo"> Cards in my hand: {userCards.length}</p>
                 </div>
                 <div className="col-6 userDrawnCard">
