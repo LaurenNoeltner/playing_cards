@@ -126,17 +126,17 @@ const CardTable = () => {
     };
 
     const handleUserWin = () => {
-        for (let i = 0; i < computerCards.length; i++) {
-            userCards.push(computerCards[i]);
-            computerCards.splice(i, 1);
-            
+        for (let i = 0; i < computerPlayedCard.length; i++) { //computerPlayedCard was computerCards when it actually worked for all instances below
+            userCards.push(computerPlayedCard[i]);              //TODO: change to ^ and make work better
+            computerPlayedCard.splice(i, 1);
+            i--;
         }
     };
     const handleComputerWin = () => {
-        for (let i = 0; i < userCards.length; i++) {
-            computerCards.push(userCards[i]);
-            userCards.splice(i, 1);
-           
+        for (let i = 0; i < userPlayedCard.length; i++) {
+            computerCards.push(userPlayedCard[i]);
+            userPlayedCard.splice(i, 1);
+            i--;
         }
     }
 
